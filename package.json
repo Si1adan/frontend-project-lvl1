@@ -22,5 +22,8 @@
   "homepage": "https://github.com/Si1adan/frontend-project-lvl1#readme",
   "devDependencies": {
     "eslint": "^8.10.0"
+  },
+  "dependencies": {
+    "readline-sync": "^1.4.10"
   }
 }
