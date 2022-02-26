@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/Si1adan/frontend-project-lvl1/issues"
   },
-  "homepage": "https://github.com/Si1adan/frontend-project-lvl1#readme"
+  "homepage": "https://github.com/Si1adan/frontend-project-lvl1#readme",
+  "devDependencies": {
+    "eslint": "^8.10.0"
+  }
 }
