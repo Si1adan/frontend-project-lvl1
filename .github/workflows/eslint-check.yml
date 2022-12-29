@@ -5,8 +5,10 @@ on: [push, pull_request]
 jobs:
   lint:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+    steps: 
+      - name: get repo code
+        uses: actions/checkout@v3
+      - name: install dep-s
+        run: npm ci
       - name: linter check
-      - run: npm ci
-      - run: make lint
+        run: make lint
