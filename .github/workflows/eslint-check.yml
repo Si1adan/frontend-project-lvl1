@@ -3,10 +3,17 @@ name: eslint-check
 on: [push, pull_request]
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: linter check
-    - run: npm ci
-    - run: make lint
+    steps: 
+      - name: Get repo code
+        uses: actions/checkout@v3
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Install dep-s
+        run: npm ci
+      - name: Make linter check
+        run: make lint
