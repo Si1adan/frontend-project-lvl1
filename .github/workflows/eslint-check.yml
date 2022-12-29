@@ -6,9 +6,14 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps: 
-      - name: get repo code
+      - name: Get repo code
         uses: actions/checkout@v3
-      - name: install dep-s
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Install dep-s
         run: npm ci
-      - name: linter check
+      - name: Make linter check
         run: make lint
