@@ -1,5 +1,5 @@
 import readlineSync from 'readline-sync';
-import getRandomInt from './random-generator.js';
+import getRandomInt from '../random-generator.js';
 
 const even = () => {
   console.log('Welcome to the Brain Games!');
