@@ -1,9 +1,8 @@
-/* eslint-disable import/prefer-default-export */
 import readlineSync from 'readline-sync';
 import { getRandomInt } from '../random-generator.js';
 import * as engine from '../index.js';
 
-export const gcd = () => {
+const gcd = () => {
   const userName = engine.welcome();
   engine.rules('Find the greatest common divisor of given numbers.');
   const iterations = () => {
@@ -33,3 +32,5 @@ export const gcd = () => {
   };
   iterations();
 };
+
+export default gcd;
