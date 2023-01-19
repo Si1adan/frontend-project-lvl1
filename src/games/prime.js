@@ -1,34 +1,20 @@
-import readlineSync from 'readline-sync';
-import { getRandomInt, isPrime } from '../random-generator.js';
 import * as engine from '../index.js';
+import { getRandomInt, isPrime } from '../utils.js';
 
-const prime = () => {
-  const userName = engine.welcome();
-  engine.rules('Answer "yes" if given number is prime. Otherwise answer "no".');
+export default () => {
+  const rules = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+  const userName = engine.welcome(rules);
 
-  const iter = () => {
-    const roundsCount = 3;
+  for (let i = 0; i < engine.roundsCount; i += 1) {
+    const exp = getRandomInt();
+    const correctAnswer = isPrime(exp) ? 'yes' : 'no';
 
-    for (let i = 0; i < roundsCount; i += 1) {
-      const num = getRandomInt();
-      const correctAnswer = isPrime(num) ? 'yes' : 'no';
-      const exp = num;
-
-      const userAnswer = readlineSync.question(`Question: ${exp}\nYour answer: `).trim().toLowerCase();
-
-      if (correctAnswer.toString() === userAnswer) {
-        console.log('Correct!');
-      } else {
-        console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
-        console.log(`Let's try again, ${userName}!`);
-        return;
-      }
+    const userAnswer = engine.askQuestion(exp);
+    const endFlag = engine.checkAnswer(userName, correctAnswer, userAnswer);
+    if (endFlag) {
+      return;
     }
+  }
 
-    console.log(`Congratulations, ${userName}!`);
-  };
-
-  iter();
+  engine.end(userName);
 };
-
-export default prime;
