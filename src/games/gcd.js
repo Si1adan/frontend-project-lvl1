@@ -1,36 +1,23 @@
-import readlineSync from 'readline-sync';
-import { getRandomInt } from '../random-generator.js';
 import * as engine from '../index.js';
+import { getGCD, getRandomInt } from '../utils.js';
 
-const gcd = () => {
-  const userName = engine.welcome();
-  engine.rules('Find the greatest common divisor of given numbers.');
-  const iterations = () => {
-    const roundsCount = 3;
-    for (let i = 0; i < roundsCount; i += 1) {
-      const num1 = getRandomInt();
-      const num2 = getRandomInt();
-      const exp = `${num1} ${num2}`;
-      const userAnswer = readlineSync.question(`Question: ${exp}\nYour answer: `).trim().toLowerCase();
-      const correctAnswer = () => {
-        for (let j = (num1 < num2 ? num1 : num2); ; j -= 1) {
-          if (num1 % j === 0 && num2 % j === 0) {
-            return j;
-          }
-        }
-      };
+export default () => {
+  const rules = 'Find the greatest common divisor of given numbers.';
+  const userName = engine.welcome(rules);
 
-      if (correctAnswer().toString() === userAnswer) {
-        console.log('Correct!');
-      } else {
-        console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer()}'.`);
-        console.log(`Let's try again, ${userName}!`);
-        return;
-      }
+  for (let i = 0; i < engine.roundsCount; i += 1) {
+    const num1 = getRandomInt();
+    const num2 = getRandomInt();
+
+    const exp = `${num1} ${num2}`;
+    const correctAnswer = getGCD(num1, num2);
+
+    const userAnswer = engine.askQuestion(exp);
+    const endFlag = engine.checkAnswer(userName, correctAnswer, userAnswer);
+    if (endFlag) {
+      return;
     }
-    console.log(`Congratulations, ${userName}!`);
-  };
-  iterations();
-};
+  }
 
-export default gcd;
+  engine.end(userName);
+};
