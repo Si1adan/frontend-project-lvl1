@@ -12,7 +12,7 @@ export default () => {
     const num2 = getRandomInt(1, 50);
     const operator = getRandomOperator();
 
-    const exp = getCalcExp(num1, num1, operator);
+    const exp = getCalcExp(num1, num2, operator);
     const correctAnswer = getCalcCorrectAnswer(num1, num2, operator);
 
     const userAnswer = engine.askQuestion(exp);
