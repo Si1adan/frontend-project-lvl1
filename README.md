@@ -6,27 +6,27 @@
 ## Description
 Brain Games is a set of five console mini-games based on the popular mobile brain-pumping apps. Each game asks questions that need to be answered correctly. After three correct answers the game is considered completed. Wrong answers end the game and prompt you to play again.
 ## Games list
-brain-even 
-: Determining an even number.
+>*brain-even* 
+>- Determining an even number.
 
-brain-calc
-: Arithmetic expressions to be calculated.
+>*brain-calc*
+>- Arithmetic expressions to be calculated.
 
-brain-gcd
-: Determining the largest common divisor.
+>*brain-gcd*
+>- Determining the largest common divisor.
 
-brain-progression
-: Finding missing numbers in a sequence of numbers.
+>*brain-progression*
+>- Finding missing numbers in a sequence of numbers.
 
-brain-prime
-: Determining a prime number.
+>*brain-prime*
+>- Determining a prime number.
 ## Installation
 1. `git clone git@github.com:Si1adan/frontend-project-lvl1.git`
 2. `cd frontend-project-lvl1`
 3. `npm ci`
 4. `npm link`
 ## Gameplay
--  **brain-even**
+- **brain-even**
 [![asciicast](https://asciinema.org/a/JAE8trDQvUmKvh9MF8Ik5qnwx.svg)](https://asciinema.org/a/JAE8trDQvUmKvh9MF8Ik5qnwx)
 - **brain-calc**
 [![asciicast](https://asciinema.org/a/Lmp6hQZPpKZU8y575lRCdiaoz.svg)](https://asciinema.org/a/Lmp6hQZPpKZU8y575lRCdiaoz)
