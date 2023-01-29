@@ -1,11 +1,9 @@
-import * as engine from '../index.js';
+import { game } from '../index.js';
 import { getRandomInt } from '../utils.js';
 
 export default () => {
   const rules = 'What number is missing in the progression?';
-  const userName = engine.welcome(rules);
-
-  for (let i = 0; i < engine.roundsCount; i += 1) {
+  const getExp = () => {
     const initNum = getRandomInt(0, 10);
     const diff = getRandomInt(1, 10);
     const emptyPos = getRandomInt(0, 10);
@@ -19,13 +17,9 @@ export default () => {
     const correctAnswer = row[emptyPos];
     row[emptyPos] = '..';
     const exp = row.toString().replaceAll(',', ' ');
+    return [exp, correctAnswer];
+  };
+  const getCorrectAnswer = (correctAnswer) => correctAnswer;
 
-    const userAnswer = engine.askQuestion(exp);
-    const endFlag = engine.checkAnswer(userName, correctAnswer, userAnswer);
-    if (endFlag) {
-      return;
-    }
-  }
-
-  engine.end(userName);
+  game(getExp, getCorrectAnswer, rules);
 };

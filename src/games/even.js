@@ -1,19 +1,11 @@
-import * as engine from '../index.js';
-import { isEven, getRandomInt } from '../utils.js';
+import { game } from '../index.js';
+import { getRandomInt } from '../utils.js';
 
 export default () => {
-  const userName = engine.welcome();
+  const rules = 'Answer "yes" if the number is even, otherwise answer "no".';
+  const isEven = (num) => (num % 2 === 0);
+  const getExp = () => getRandomInt();
+  const getCorrectAnswer = (exp) => (isEven(exp) ? 'yes' : 'no');
 
-  for (let i = 0; i < engine.roundsCount; i += 1) {
-    const exp = getRandomInt();
-    const correctAnswer = isEven(exp) ? 'yes' : 'no';
-
-    const userAnswer = engine.askQuestion(exp);
-    const endFlag = engine.checkAnswer(userName, correctAnswer, userAnswer);
-    if (endFlag) {
-      return;
-    }
-  }
-
-  engine.end(userName);
+  game(getExp, getCorrectAnswer, rules);
 };

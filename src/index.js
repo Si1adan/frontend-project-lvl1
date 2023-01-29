@@ -32,3 +32,20 @@ export const checkAnswer = (userName, correctAnswer, userAnswer) => {
 export const end = (userName) => {
   console.log(`Congratulations, ${userName}!`);
 };
+
+export const game = (getExp, getCorrectAnswer, rules) => {
+  const userName = welcome(rules);
+
+  for (let i = 0; i < roundsCount; i += 1) {
+    const [exp, answer] = (Array.isArray(getExp()) ? getExp() : [getExp()]);
+    const correctAnswer = getCorrectAnswer(answer || exp);
+
+    const userAnswer = askQuestion(exp);
+    const endFlag = checkAnswer(userName, correctAnswer, userAnswer);
+    if (endFlag) {
+      return;
+    }
+  }
+
+  end(userName);
+};

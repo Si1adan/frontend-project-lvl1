@@ -1,23 +1,27 @@
-import * as engine from '../index.js';
-import { getGCD, getRandomInt } from '../utils.js';
+import { game } from '../index.js';
+import { getRandomInt } from '../utils.js';
 
 export default () => {
   const rules = 'Find the greatest common divisor of given numbers.';
-  const userName = engine.welcome(rules);
 
-  for (let i = 0; i < engine.roundsCount; i += 1) {
+  const getGCD = (num1, num2) => {
+    const smallerNum = (num1 < num2 ? num1 : num2);
+    for (let j = smallerNum; ; j -= 1) {
+      if (num1 % j === 0 && num2 % j === 0) {
+        return j;
+      }
+    }
+  };
+
+  const getExp = () => {
     const num1 = getRandomInt();
     const num2 = getRandomInt();
 
     const exp = `${num1} ${num2}`;
     const correctAnswer = getGCD(num1, num2);
+    return [exp, correctAnswer];
+  };
+  const getCorrectAnswer = (correctAnswer) => correctAnswer;
 
-    const userAnswer = engine.askQuestion(exp);
-    const endFlag = engine.checkAnswer(userName, correctAnswer, userAnswer);
-    if (endFlag) {
-      return;
-    }
-  }
-
-  engine.end(userName);
+  game(getExp, getCorrectAnswer, rules);
 };
