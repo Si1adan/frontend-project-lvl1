@@ -2,7 +2,7 @@ import readlineSync from 'readline-sync';
 
 export const roundsCount = 3;
 
-export const welcome = (rules = 'Answer "yes" if the number is even, otherwise answer "no".') => {
+export const welcome = (rules) => {
   console.log('Welcome to the Brain Games!');
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}!`);
@@ -33,12 +33,11 @@ export const end = (userName) => {
   console.log(`Congratulations, ${userName}!`);
 };
 
-export const game = (getExp, getCorrectAnswer, rules) => {
+export const game = (getExpAndCorrectAnswer, rules) => {
   const userName = welcome(rules);
 
   for (let i = 0; i < roundsCount; i += 1) {
-    const [exp, answer] = (Array.isArray(getExp()) ? getExp() : [getExp()]);
-    const correctAnswer = getCorrectAnswer(answer || exp);
+    const [exp, correctAnswer] = getExpAndCorrectAnswer();
 
     const userAnswer = askQuestion(exp);
     const endFlag = checkAnswer(userName, correctAnswer, userAnswer);

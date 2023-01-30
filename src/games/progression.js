@@ -1,9 +1,10 @@
 import { game } from '../index.js';
-import { getRandomInt } from '../utils.js';
+import getRandomInt from '../utils.js';
 
 export default () => {
   const rules = 'What number is missing in the progression?';
-  const getExp = () => {
+
+  const getExpAndCorrectAnswer = () => {
     const initNum = getRandomInt(0, 10);
     const diff = getRandomInt(1, 10);
     const emptyPos = getRandomInt(0, 10);
@@ -17,9 +18,9 @@ export default () => {
     const correctAnswer = row[emptyPos];
     row[emptyPos] = '..';
     const exp = row.toString().replaceAll(',', ' ');
+
     return [exp, correctAnswer];
   };
-  const getCorrectAnswer = (correctAnswer) => correctAnswer;
 
-  game(getExp, getCorrectAnswer, rules);
+  game(getExpAndCorrectAnswer, rules);
 };

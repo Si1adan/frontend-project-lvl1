@@ -1,5 +1,5 @@
 import { game } from '../index.js';
-import { getRandomInt } from '../utils.js';
+import getRandomInt from '../utils.js';
 
 export default () => {
   const rules = 'What is the result of the expression?';
@@ -36,16 +36,16 @@ export default () => {
     }
   };
 
-  const getExp = () => {
+  const getExpAndCorrectAnswer = () => {
     const num1 = getRandomInt(1, 50);
     const num2 = getRandomInt(1, 50);
     const operator = getRandomOperator();
 
     const exp = getCalcExp(num1, num2, operator);
     const correctAnswer = getCalcCorrectAnswer(num1, num2, operator);
+
     return [exp, correctAnswer];
   };
-  const getCorrectAnswer = (correctAnswer) => correctAnswer;
 
-  game(getExp, getCorrectAnswer, rules);
+  game(getExpAndCorrectAnswer, rules);
 };
