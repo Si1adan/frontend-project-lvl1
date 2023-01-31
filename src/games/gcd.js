@@ -1,4 +1,4 @@
-import { game } from '../index.js';
+import startGame from '../index.js';
 import getRandomInt from '../utils.js';
 
 export default () => {
@@ -24,5 +24,5 @@ export default () => {
     return [exp, correctAnswer];
   };
 
-  game(getExpAndCorrectAnswer, rules);
+  startGame(getExpAndCorrectAnswer, rules);
 };

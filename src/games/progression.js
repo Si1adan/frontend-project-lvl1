@@ -1,4 +1,4 @@
-import { game } from '../index.js';
+import startGame from '../index.js';
 import getRandomInt from '../utils.js';
 
 export default () => {
@@ -17,10 +17,10 @@ export default () => {
 
     const correctAnswer = row[emptyPos];
     row[emptyPos] = '..';
-    const exp = row.toString().replaceAll(',', ' ');
+    const exp = row.join(' ');
 
     return [exp, correctAnswer];
   };
 
-  game(getExpAndCorrectAnswer, rules);
+  startGame(getExpAndCorrectAnswer, rules);
 };

@@ -1,39 +1,37 @@
 import readlineSync from 'readline-sync';
 
-export const roundsCount = 3;
+export default (getExpAndCorrectAnswer, rules) => {
+  const welcome = () => {
+    console.log('Welcome to the Brain Games!');
+    const userName = readlineSync.question('May I have your name? ');
+    console.log(`Hello, ${userName}!`);
+    console.log(rules);
 
-export const welcome = (rules) => {
-  console.log('Welcome to the Brain Games!');
-  const userName = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${userName}!`);
-  console.log(rules);
+    return userName;
+  };
 
-  return userName;
-};
+  const askQuestion = (exp) => {
+    console.log(`Question: ${exp}`);
+    const userAnswer = readlineSync.question('Your answer: ').trim().toLowerCase();
 
-export const askQuestion = (exp) => {
-  console.log(`Question: ${exp}`);
-  const userAnswer = readlineSync.question('Your answer: ').trim().toLowerCase();
+    return userAnswer;
+  };
 
-  return userAnswer;
-};
+  const checkAnswer = (userName, correctAnswer, userAnswer) => {
+    if (correctAnswer.toString() === userAnswer) {
+      console.log('Correct!');
 
-export const checkAnswer = (userName, correctAnswer, userAnswer) => {
-  if (correctAnswer.toString() === userAnswer) {
-    console.log('Correct!');
-    return false;
-  }
+      return false;
+    }
 
-  console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
-  console.log(`Let's try again, ${userName}!`);
-  return true;
-};
+    console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
+    console.log(`Let's try again, ${userName}!`);
 
-export const end = (userName) => {
-  console.log(`Congratulations, ${userName}!`);
-};
+    return true;
+  };
 
-export const game = (getExpAndCorrectAnswer, rules) => {
+  const roundsCount = 3;
+
   const userName = welcome(rules);
 
   for (let i = 0; i < roundsCount; i += 1) {
@@ -46,5 +44,5 @@ export const game = (getExpAndCorrectAnswer, rules) => {
     }
   }
 
-  end(userName);
+  console.log(`Congratulations, ${userName}!`);
 };
